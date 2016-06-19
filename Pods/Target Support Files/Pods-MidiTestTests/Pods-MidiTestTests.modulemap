@@ -1,0 +1,6 @@
+framework module Pods_MidiTestTests {
+  umbrella header "Pods-MidiTestTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
