@@ -12,6 +12,9 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
    // Add a comment
+    
+    // Add second comment
+    
    var mainWindowController: MainWindowController?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
