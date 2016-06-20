@@ -17,6 +17,7 @@
 		E40895451D160DE30056B28C /* MidiTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40895441D160DE30056B28C /* MidiTestUITests.swift */; };
 		E40895541D160E080056B28C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40895521D160E080056B28C /* MainWindowController.swift */; };
 		E40895551D160E080056B28C /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E40895531D160E080056B28C /* MainWindowController.xib */; };
+		E4BA70AB1D16E24800775AA8 /* MIDIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA70AA1D16E24800775AA8 /* MIDIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		E40895461D160DE30056B28C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E40895521D160E080056B28C /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		E40895531D160E080056B28C /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
+		E4BA70AA1D16E24800775AA8 /* MIDIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				E40895301D160DE20056B28C /* Info.plist */,
 				E40895521D160E080056B28C /* MainWindowController.swift */,
 				E40895531D160E080056B28C /* MainWindowController.xib */,
+				E4BA70AA1D16E24800775AA8 /* MIDIClient.swift */,
 			);
 			path = MidiTest;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			files = (
 				E40895541D160E080056B28C /* MainWindowController.swift in Sources */,
 				E408952A1D160DE20056B28C /* AppDelegate.swift in Sources */,
+				E4BA70AB1D16E24800775AA8 /* MIDIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

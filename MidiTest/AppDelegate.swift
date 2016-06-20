@@ -7,15 +7,61 @@
 //
 
 import Cocoa
+import MIKMIDI
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-   // Add a comment
-    
-    // Add second comment
-    
    var mainWindowController: MainWindowController?
+    
+    var midiManager: MIKMIDIDeviceManager?
+    
+    var send: MIKMIDIClientSourceEndpoint?
+    var receive: MIKMIDIClientDestinationEndpoint?
+    var myDevice: MIKMIDIDevice?
+
+    
+    
+    
+    
+    
+    
+    func available() {
+        for i in midiManager!.virtualSources {
+            print(i)
+        }
+        for i in midiManager!.virtualDestinations {
+            print(i)
+        }
+    }
+   
+    
+    func sendMIDINote() {
+        let midiTimeStamp = NSDate()
+        let noteOn = MIKMIDINoteOnCommand(note: 67, velocity: 127, channel: 0, timestamp: midiTimeStamp)
+        let noteOff = MIKMIDINoteOffCommand(note: 67, velocity: 127, channel: 0, timestamp: midiTimeStamp.dateByAddingTimeInterval(0.5))
+        
+        let myArray: [MIKMIDICommand] = [noteOn, noteOff]
+        
+//        for i in midiManager!.virtualDestinations {
+//            if i.name == "Surf Port 1" {
+//                midiManager?.sendCommands(myArray, toEndpoint: i) {
+//                    do {
+//                        try
+//                    }
+//                }
+//            }
+//        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+// MARK: - AppDelegate functions
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
@@ -27,7 +73,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Set the property to point to the window controller
         self.mainWindowController = mainWindowController
-            
+        
+        send = MIKMIDIClientSourceEndpoint(name: "Surf Port 1")
+        receive = MIKMIDIClientDestinationEndpoint(name: "Surf Port 1", receivedMessagesHandler: nil)
+        
+        midiManager = MIKMIDIDeviceManager.sharedDeviceManager()
+        
+        
+        
+        available()
     }
 
 
