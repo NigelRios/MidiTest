@@ -40,15 +40,15 @@ class MainWindowController: NSWindowController {
 
     func createMIDINote() {
         let midiTimeStamp = NSDate()
-        let noteOn = MIKMIDINoteOnCommand(note: 67, velocity: 127, channel: 0, timestamp: midiTimeStamp)
-        let noteOff = MIKMIDINoteOffCommand(note: 67, velocity: 127, channel: 0, timestamp: midiTimeStamp)
+        let noteOn = MIKMIDINoteOnCommand(note: 60, velocity: 127, channel: 0, timestamp: midiTimeStamp)
+        let noteOff = MIKMIDINoteOffCommand(note: 60, velocity: 127, channel: 0, timestamp: midiTimeStamp)
         
         let myArray: [MIKMIDICommand] = [noteOn, noteOff]
         
-            for i in midiManager.virtualDestinations {
+            for i in midiManager.virtualSources {
                 if i.name == "Surf Port 1" {
                     do {
-                        try midiManager.sendCommands(myArray, toEndpoint: i)
+                        try midiManager.sendCommands(myArray, toVirtualEndpoint: send!)
                         print("Note sent")
                     } catch {
                         print("Something went wrong")
