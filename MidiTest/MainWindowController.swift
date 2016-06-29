@@ -7,9 +7,11 @@
 //
 
 import Cocoa
-import MIKMIDI
+
 
 class MainWindowController: NSWindowController {
+    
+    var midiClient: MIDIClient?
     
     override var windowNibName: String {
         return "MainWindowController"
@@ -20,53 +22,20 @@ class MainWindowController: NSWindowController {
         
     }
     
-    var mainWindowController: MainWindowController?
-    
-    var midiManager = MIKMIDIDeviceManager.sharedDeviceManager()
-    
-    var send = MIKMIDIClientSourceEndpoint(name: "Surf Port 1")
-    var receive = MIKMIDIClientDestinationEndpoint(name: "Surf Port 1", receivedMessagesHandler: nil)
-    var myDevice: MIKMIDIDevice?
-    
-    
-    func available() {
-            for i in midiManager.virtualSources {
-                print(i)
-            }
-            for i in midiManager.virtualDestinations {
-                print(i)
-            }
-    }
-
-    func createMIDINote() {
-        let midiTimeStamp = NSDate()
-        let noteOn = MIKMIDINoteOnCommand(note: 60, velocity: 127, channel: 0, timestamp: midiTimeStamp)
-        let noteOff = MIKMIDINoteOffCommand(note: 60, velocity: 127, channel: 0, timestamp: midiTimeStamp)
+    override func awakeFromNib() {
+        midiClient = MIDIClient(name: "Surf Port 1")
         
-        let myArray: [MIKMIDICommand] = [noteOn, noteOff]
-        
-            for i in midiManager.virtualSources {
-                if i.name == "Surf Port 1" {
-                    do {
-                        try midiManager.sendCommands(myArray, toVirtualEndpoint: send!)
-                        print("Note sent")
-                    } catch {
-                        print("Something went wrong")
-                    }
-                }
-            }
     }
-
-    func createMIDIClients() {
-        send = MIKMIDIClientSourceEndpoint(name: "Surf Port 1")
-        receive = MIKMIDIClientDestinationEndpoint(name: "Surf Port 1", receivedMessagesHandler: nil)
-        
-        midiManager = MIKMIDIDeviceManager.sharedDeviceManager()
-    }
+   
+//    func createMIDIClients() {
+//        send = MIKMIDIClientSourceEndpoint(name: "Surf Port 1")
+//        receive = MIKMIDIClientDestinationEndpoint(name: "Surf Port 1", receivedMessagesHandler: nil)
+//        
+//    }
     
     
     @IBAction func sendMIDINote(sender: NSButton) {
-        createMIDINote()
+        midiClient?.createMIDINote()
     }
     
 }
