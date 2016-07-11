@@ -26,8 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Set the property to point to the window controller
         self.mainWindowController = mainWindowController
-//        self.mainWindowController?.createMIDIClients()
-//        self.mainWindowController?.available()
+
         
     }
 

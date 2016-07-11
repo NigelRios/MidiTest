@@ -12,6 +12,7 @@ import Cocoa
 class MainWindowController: NSWindowController {
     
     var midiClient: MIDIClient?
+    var lastPosition: Int = 0
     
     override var windowNibName: String {
         return "MainWindowController"
@@ -26,16 +27,31 @@ class MainWindowController: NSWindowController {
         midiClient = MIDIClient(name: "Surf Port 1")
         
     }
-   
-//    func createMIDIClients() {
-//        send = MIKMIDIClientSourceEndpoint(name: "Surf Port 1")
-//        receive = MIKMIDIClientDestinationEndpoint(name: "Surf Port 1", receivedMessagesHandler: nil)
-//        
-//    }
-    
     
     @IBAction func sendMIDINote(sender: NSButton) {
         midiClient?.createMIDINote()
     }
     
+    
+    @IBAction func sendFaderMove(sender: NSSlider) {
+        let number = UInt16(sender.integerValue)
+        midiClient?.pitchWheel(number)
+    }
+    
+    @IBAction func sendPanning(sender: NSSlider) {
+        let number = sender.integerValue
+//        print(number)
+        var clockwise: Bool
+        if number > lastPosition {
+            clockwise = true
+            lastPosition = number
+        } else {
+            clockwise = false
+            lastPosition = number
+        }
+        
+//        print(lastPosition)
+               print(lastPosition)
+        midiClient?.panning(UInt(abs(lastPosition)), clockwise: clockwise)
+    }
 }
